@@ -2,12 +2,17 @@
 
 [Data Hub](https://github.com/datasnack/datahub) instance for Ghana.
 
-
-
 ## Installation
 
-- Clone the Data Hub repository to a different folder: https://github.com/datasnack/datahub
+First we need to prepare the Docker image of the Data Hub software:
+
+- First clone the [Data Hub repository](https://github.com/datasnack/datahub) to your computer: `$ git clone git@github.com:datasnack/datahub.git`
 - Inside this folder build the Docker container with `$ docker build -t data-hub:latest .`
+
+
+No we can clone the Ghana Hub instance (this repository):
+
+- Clone the repository `$ git clone git@github.com:datasnack/dh-ghana.git`
 - Copy the `.env.example` to `.env`: `$ cp .env.example .env`
 - Set `SECRET_KEY=` inside the `.env` with a secret value. Use `python3 -c 'import secrets; print(secrets.token_hex(100))` to create a value
 - Run `$ docker-compose up -d`
@@ -17,7 +22,7 @@ Now either import an existing data dump, or create a new instance.
 
 ### Import
 
-TO import a previously created dump into the hub place the dump file inside the `data/` directory and run `$ docker-compose exec data-hub python manage.py restore <filename>`.
+To import a previously created dump into the hub place the dump file inside the `data/` directory and run `$ docker-compose exec data-hub python manage.py restore <filename>`.
 
 ### Create new
 
