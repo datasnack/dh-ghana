@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<h1>Welcome to the Ghana Hub</h1>
+
+<p>
+	This is prototype, inside the <code>{&percnt; block&percnt;}…{&percnt; endblock &percnt;}</code> all HTML content be added. In case you add images put them in <code>src/ghana/static/</code>.
+</p>
+
+<p>
+    The hub currently holds {{ shapes_count }} shapes, from the following types:
+</p>
+<ul>
+{% for type in shape_types %}
+	<li><a href="{{ type.get_absolute_url }}">{{ type.name }}</a> ({{ type.shapes.all.count }})</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
