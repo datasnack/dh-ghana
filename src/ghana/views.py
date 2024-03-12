@@ -10,7 +10,8 @@ def study_sites(request):
 
     context = {
         'shapes': None,
-        'datalayers': None
+        'datalayers': None,
+        'point': None,
     }
 
     lat = request.GET.get('lat')
@@ -20,6 +21,8 @@ def study_sites(request):
         point = Point(float(lng), float(lat))
         shapes = Shape.objects.filter(geometry__contains=point).order_by('type__position')
         context['shapes'] = shapes
+
+        context['point'] = point
 
         all_layers = Datalayer.objects.all()
         context['datalayers'] = []

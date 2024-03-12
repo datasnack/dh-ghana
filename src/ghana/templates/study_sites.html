@@ -22,11 +22,11 @@
 	</p>
 
 	{% for shape in shapes %}
-	<div class="card mb-3">
-        <div class="card-header">
+	<details class="card mb-3">
+        <summary class="card-header">
             <a href="{{ shape.get_absolute_url }}">{{ shape.name }}</a>
 			<span class="text-muted">(<a href="{{ shape.type.get_absolute_url }}">{{ shape.type.name }}</a>)</span>
-        </div>
+		</summary>
         <div class="card-body">
 			<div class="row">
 				<div class="col-12 col-lg-8">
@@ -83,7 +83,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</details>
 	{%endfor%}
 </div>
 </div>
@@ -148,6 +148,9 @@ map.on("click", function (event) {
 {% for shape in shapes %}
 var map{{ forloop.counter0 }} = get_base_map('map{{ forloop.counter0 }}');
 load_shape(map{{ forloop.counter0 }}, {shape_id: '{{ shape.id }}'});
+
+var marker = L.marker([{{ point.y}}, {{point.x}}]).addTo(map{{ forloop.counter0 }});
+
 
 $('#datalayers{{ forloop.counter0 }}').DataTable({
 	pageLength: 25,
