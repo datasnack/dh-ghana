@@ -8,17 +8,50 @@
 
 <h1>Welcome to the Ghana Hub</h1>
 
+<br
+
 <p>
-	This is prototype, inside the <code>{&percnt; block&percnt;}…{&percnt; endblock &percnt;}</code> all HTML content be added. In case you add images put them in <code>src/ghana/static/</code>.
+<h3>Give me a spin, I'm your Data Hub prototype in action!</h3>
+The <b>Data Hub</b> serves as a dynamic spatio-temporal information platform, tailored to the data practices of researchers in infectious diseases and public stakeholders engaged in epidemic preparedness and response. It offers an integrated view of various Data Layers relevant to <b>Ghana</b>, spanning multiple categories such as socio-demographic, environmental, weather, health, and infrastructure. These layers are compiled from user-based and open data sources (with some layers originating from the same source) to support data analysis and decision-making.
 </p>
 
 <p>
-    The hub currently holds {{ shapes_count }} shapes, from the following types:
+The hub currently holds {{ shapes_count }} shapes, from the following types:
 </p>
 <ul>
 {% for type in shape_types %}
 	<li><a href="{{ type.get_absolute_url }}">{{ type.name }}</a> ({{ type.shapes.all.count }})</li>
 {% endfor %}
 </ul>
+
+<p>
+More details and in-depth documentation of each Data Layer can be accessed via its <a href="/datalayers">documentation page</a> , including metadata information.
+</p>
+
+<br>
+
+</p>
+<h3>Snack your Data</h3>
+To access the gathered open data sources you can browse them via the <a href="/shapes/country">Country</a>, <a href="/shapes/region">Region</a> and <a href="/shapes/district">District</a> listings or the <a href="/study_sites">Study Site picker</a>. Upon choosing your area of interest, you can tailor your data selection through our download configurator, which also offers a basic preview (spatial and temporal description) of the data for your convenience.
+</p>
+
+<br>
+
+<p>
+<h3>Terms of Use</h3>
+The <b>Ghana Hub</b> hosts datasets under a wide range of licenses, ensuring compliance with the intellectual property rights of the various data sources utilized. Some datasets have been processed according to the needs of potential user groups. By accessing datasets through the Data Hub and/or the original source, users implicitly agree to abide by the terms of the applicable license specific to each dataset, as described in the dataset's metadata. This includes that when utilizing any data provided through the Data Hub, the data custodian shall be credited in the manner specified in the respective license and that relevant copyright provisions shall be complied with. In addition, the Data Hub shall be cited as contributing service as follows:
+<p>
+<p class="ps-3 text-muted" style="border-left: 3px solid #ccc; font-style: italic;">
+Jonathan Ströbele, Juliane Boenecke, 2023. Ghana Data Hub (v0.1.0.dev0, MIT license), GitHub repository. <a href="https://github.com/datasnack/dh-ghana">https://github.com/datasnack/dh-ghana</a>.
+</p>
+
+<br>
+
+<p>
+In case you add images put them in <code>src/ghana/static/</code>.
+</p>
+
+<br>
+
 
 {% endblock %}
