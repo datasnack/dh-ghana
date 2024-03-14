@@ -25,6 +25,10 @@ class ChirpsTprecit(TiffLayer):
         self.time_col = LayerTimeResolution.DAY
         self.manual_nodata = -9999
 
+        self.format_suffix = "mm"
+
+
+
     def download(self):
         start_date = dt.date(2015, 1, 1)
         end_date   = dt.date(2016, 12, 31)

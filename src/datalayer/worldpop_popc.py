@@ -10,6 +10,7 @@ class WorldpopPopc(TiffLayer):
         super().__init__()
 
         self.precision = 0
+        self.format_suffix = 'entities'
 
     def download(self):
         for year in range(2010, 2020+1):

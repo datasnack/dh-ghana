@@ -14,6 +14,8 @@ class ChirtsMaxt(TiffLayer):
         self.time_col = LayerTimeResolution.DAY
         self.manual_nodata = -9999
 
+        self.format_suffix = "°C"
+
     def download(self):
         start_date = dt.date(2015, 1, 1)
         end_date = dt.date(2016, 12, 31) # last date available for data source

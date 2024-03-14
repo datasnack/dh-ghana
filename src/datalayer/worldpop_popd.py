@@ -6,6 +6,11 @@ from datalayers.datasources.tiff_layer import TiffLayer
 
 class WorldpopPopd(TiffLayer):
 
+    def __init__(self):
+        super().__init__()
+
+        self.format_suffix = "entities/km²"
+
     def download(self):
         for year in range(2010, 2020+1):
             url = f"https://data.worldpop.org/GIS/Population_Density/Global_2000_2020_1km_UNadj/{year}/GHA/gha_pd_{year}_1km_UNadj.tif"
