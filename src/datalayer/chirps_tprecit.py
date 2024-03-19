@@ -31,7 +31,7 @@ class ChirpsTprecit(TiffLayer):
 
     def download(self):
         start_date = dt.date(2015, 1, 1)
-        end_date   = dt.date(2016, 12, 31)
+        end_date   = dt.date(2024, 2, 29)
 
         # download all required files
         for date in self.date_range(start_date, end_date):
