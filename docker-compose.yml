@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   data-hub:
     image: data-hub
