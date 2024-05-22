@@ -7,7 +7,7 @@
 First we need to prepare the Docker image of the Data Hub software:
 
 - First clone the [Data Hub repository](https://github.com/datasnack/datahub) to your computer: `$ git clone git@github.com:datasnack/datahub.git`
-- Inside this folder build the Docker container with `$ docker build -t data-hub:latest .`
+- Inside this folder build the Docker container with `$ docker build -t datahub:latest .`
 
 
 No we can clone the Ghana Hub instance (this repository):
@@ -22,20 +22,20 @@ Now either import an existing data dump, or create a new instance.
 
 ### Import
 
-To import a previously created dump into the hub place the dump file inside the `data/` directory and run `$ docker-compose exec data-hub python manage.py restore <filename>`.
+To import a [previously created dump](https://github.com/datasnack/dh-ghana/releases) into the hub place the dump file inside the `data/` directory and run `$ docker-compose exec datahub python manage.py restore <filename>`.
 
 ### Create new
 
-- Create admin user with `$ docker-compose exec data-hub python manage.py createsuperuser`
-- Import [prepared shape file](https://github.com/datasnack/aoi-ghana) with: `$ docker-compose exec data-hub python manage.py loadshapes ./data/shapes/ghana.gpkg`
-- Import Data Layer specifications: `$ docker-compose exec data-hub python manage.py import ./data/datalayerspec/datalayer.csv`
+- Create admin user with `$ docker-compose exec datahub python manage.py createsuperuser`
+- Import [prepared shape file](https://github.com/datasnack/aoi-ghana) with: `$ docker-compose exec datahub python manage.py loadshapes ./data/shapes/ghana.gpkg`
+- Import Data Layer specifications: `$ docker-compose exec datahub python manage.py import ./data/datalayerspec/datalayer.csv`
 - Import Data Layer data with:
-    - `$ docker-compose exec data-hub python manage.py datalayer <layer_key> download`
-    - `$ docker-compose exec data-hub python manage.py datalayer <layer_key> process`
+    - `$ docker-compose exec datahub python manage.py datalayer <layer_key> download`
+    - `$ docker-compose exec datahub python manage.py datalayer <layer_key> process`
 
 ### Create dump
 
-In case you need to export the data use: `$ docker-compose exec data-hub python manage.py dump`. An export file will be created in the `./data/` directory.
+In case you need to export the data use: `$ docker-compose exec datahub python manage.py dump`. An export file will be created in the `./data/` directory.
 
 
 
@@ -44,7 +44,7 @@ In case you need to export the data use: `$ docker-compose exec data-hub python 
 Create custom app to add new functionality and/or overload templates (i.e., start page).
 
     mkdir ./src/<name>
-    docker-compose exec data-hub python manage.py startapp <name> ./src/<name>
+    docker-compose exec datahub python manage.py startapp <name> ./src/<name>
 
 Then add it in the `.env` to the key `INSTALLED_USER_APPS` (comma separated list) like `src.<name>`.
 

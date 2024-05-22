@@ -1,6 +1,6 @@
 services:
   data-hub:
-    image: data-hub
+    image: datahub
     env_file:
       - .env
     ports:
