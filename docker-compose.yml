@@ -1,5 +1,5 @@
 services:
-  data-hub:
+  datahub:
     image: datahub
     env_file:
       - .env
