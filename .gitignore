@@ -235,3 +235,4 @@ cython_debug/
 pgdata/
 data/datalayers/
 *.dump
+/docker-compose.override.yml
