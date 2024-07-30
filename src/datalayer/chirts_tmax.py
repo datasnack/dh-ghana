@@ -7,7 +7,7 @@ import numpy as np
 from datalayers.datasources.tiff_layer import TiffLayer
 from datalayers.datasources.base_layer import LayerTimeResolution
 
-class ChirtsMaxt(TiffLayer):
+class ChirtsTmax(TiffLayer):
 
     def __init__(self):
         super().__init__()

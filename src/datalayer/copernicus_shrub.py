@@ -1,6 +1,6 @@
 from datalayers.datasources.copernicus_layer import CopernicusLayer
 
-class CopernicusSchrub(CopernicusLayer):
+class CopernicusShrub(CopernicusLayer):
 
     def __init__(self):
         super().__init__()

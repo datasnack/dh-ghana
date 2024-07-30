@@ -18,7 +18,7 @@ RESOLUTION = "p05" # p04 or p25 resolution in deg
 BASE_URL = "https://data.chc.ucsb.edu/products/CHIRPS-2.0/africa_daily/tifs/{resolution}/{year}/chirps-v2.0.{year}.{month:02d}.{day:02d}.tif.gz"
 
 
-class ChirpsTprecit(TiffLayer):
+class ChirpsPrcp(TiffLayer):
 
     def __init__(self):
         super().__init__()
