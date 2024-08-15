@@ -11,8 +11,8 @@ class Meteo(MeteostatLayer):
         stations = stations.region("GH")
         return stations
 
-    def start() -> dt.datetime:
-        return dt.datetime(2010, 1, 1, tzinfo=dt.UTC)
+    def start(self) -> dt.datetime:
+        return dt.datetime(2010, 1, 1)
 
-    def end() -> dt.datetime:
-        return dt.datetime.now(tz=dt.UTC)
+    def end(self) -> dt.datetime:
+        return dt.datetime.now()
