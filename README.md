@@ -1,20 +1,23 @@
 # Ghana Hub
 
-[Data Hub](https://github.com/datasnack/datahub) instance for Ghana.
+This is a [Data Hub](https://github.com/datasnack/datahub) instance for Ghana. It demonstrates the features of the Data Hub framework.
+
+The Data Hub is a geographic information system (GIS) featuring a data fusion engine designed for data harmonization, alongside an interactive dashboard for effective data exploration and collaboration. Its key objective is to merge data of multiple formats and sources across temporal and spatial axes, allowing users to combine, analyze, and interpret the data.
+
 
 ## Installation
 
-First we need to prepare the Docker image of the Data Hub software:
+We do not yet provide a ready to use Docker image of the Data Hub, so for now you need to first build the base image yourself. For this first step follow these instructions:
 
-- First clone the [Data Hub repository](https://github.com/datasnack/datahub) to your computer: `$ git clone git@github.com:datasnack/datahub.git`
+- Clone the [Data Hub repository](https://github.com/datasnack/datahub) to your computer: `$ git clone git@github.com:datasnack/datahub.git`
 - Inside this folder build the Docker container with `$ docker build -t datahub:latest .`
 
 
-No we can clone the Ghana Hub instance (this repository):
+No we can clone the Ghana Hub instance (this repository) into a new folder:
 
 - Clone the repository `$ git clone git@github.com:datasnack/dh-ghana.git`
 - Copy the `.env.example` to `.env`: `$ cp .env.example .env`
-- Set `SECRET_KEY=` inside the `.env` with a secret value. Use `python3 -c 'import secrets; print(secrets.token_hex(100))` to create a value
+- Open the `.env` file and make sure the following variables are set `SECRET_KEY`, `DATAHUB_NAME` (instructions are inside the `.env` file)
 - Run `$ docker-compose up -d`
 - Wait/check until [http://localhost:8000/](http://localhost:8000/) shows the Data Hub interface
 
@@ -22,7 +25,18 @@ Now either import an existing data dump, or create a new instance.
 
 ### Import
 
-To import a [previously created dump](https://github.com/datasnack/dh-ghana/releases) into the hub place the dump file inside the `data/` directory and run `$ docker-compose exec datahub python manage.py restore <filename>`.
+We provide ready-to-use database export of the Data Hub that you can use to directly see and use the system without the need to download and process the raw data on your local machine.
+
+To do this go the [releases](https://github.com/datasnack/dh-ghana/releases) page and download the latest `*.dump` file and place it in the `./data/` folder inside the dh-ghana repository.
+
+Run the following command from the root of the dh-ghana repository:
+
+    $ docker-compose exec datahub python manage.py restore ./data/<downloaded *.dump file>
+
+Finally, run the following command to create a new admin user with which you can log in into the backend:
+
+    $ docker-compose exec datahub python manage.py createsuperuser
+
 
 ### Create new
 
@@ -33,10 +47,10 @@ To import a [previously created dump](https://github.com/datasnack/dh-ghana/rele
     - `$ docker-compose exec datahub python manage.py datalayer <layer_key> download`
     - `$ docker-compose exec datahub python manage.py datalayer <layer_key> process`
 
+
 ### Create dump
 
 In case you need to export the data use: `$ docker-compose exec datahub python manage.py dump`. An export file will be created in the `./data/` directory.
-
 
 
 ## Customization
