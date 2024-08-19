@@ -33,7 +33,7 @@ Run the following command from the root of the dh-ghana repository:
 
     $ docker-compose exec datahub python manage.py restore ./data/<downloaded *.dump file>
 
-Finally, run the following command to create a new admin user with which you can log in into the backend:
+Finally, run the following command to create a new user with which you can log in into the backend:
 
     $ docker-compose exec datahub python manage.py createsuperuser
 
