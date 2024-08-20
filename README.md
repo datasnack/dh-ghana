@@ -21,19 +21,28 @@ No we can clone the Ghana Hub instance (this repository) into a new folder:
 - Run `$ docker compose up -d`
 - Wait/check until [http://localhost:8000/](http://localhost:8000/) shows the Data Hub interface
 
+After this you can start/stop the system with:
+
+    $ docker compose start
+    $ docker compose stop
+
+If you change the `.env` file run the following command to apply the changes:
+
+    $ docker compose up -d
+
 Now either import an existing data dump, or create a new instance.
 
 ### Import
 
-We provide ready-to-use database export of the Data Hub that you can use to directly see and use the system without the need to download and process the raw data on your local machine.
+We provide ready-to-use database export of the Ghana Hub that you can use to directly see and use the system without the need to download and process the raw data on your local machine.
 
-To do this go the [releases](https://github.com/datasnack/dh-ghana/releases) page and download the latest `*.dump` file and place it in the `./data/` folder inside the dh-ghana repository.
+Go to the [releases](https://github.com/datasnack/dh-ghana/releases) page and download the latest `*.dump` file and place it in the `./data/` folder.
 
-Run the following command from the root of the dh-ghana repository:
+Run the following command from the root of the repository:
 
     $ docker compose exec datahub python manage.py restore ./data/<downloaded *.dump file>
 
-Finally, run the following command to create a new user with which you can log in into the backend:
+Finally, run the following command to create a new user with which you can log in into the backend ([http://localhost:8000/admin](http://localhost:8000/)):
 
     $ docker compose exec datahub python manage.py createsuperuser
 
