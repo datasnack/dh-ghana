@@ -18,7 +18,7 @@ No we can clone the Ghana Hub instance (this repository) into a new folder:
 - Clone the repository `$ git clone git@github.com:datasnack/dh-ghana.git`
 - Copy the `.env.example` to `.env`: `$ cp .env.example .env`
 - Open the `.env` file and make sure the following variables are set `SECRET_KEY`, `DATAHUB_NAME` (instructions are inside the `.env` file)
-- Run `$ docker-compose up -d`
+- Run `$ docker compose up -d`
 - Wait/check until [http://localhost:8000/](http://localhost:8000/) shows the Data Hub interface
 
 Now either import an existing data dump, or create a new instance.
@@ -31,26 +31,26 @@ To do this go the [releases](https://github.com/datasnack/dh-ghana/releases) pag
 
 Run the following command from the root of the dh-ghana repository:
 
-    $ docker-compose exec datahub python manage.py restore ./data/<downloaded *.dump file>
+    $ docker compose exec datahub python manage.py restore ./data/<downloaded *.dump file>
 
 Finally, run the following command to create a new user with which you can log in into the backend:
 
-    $ docker-compose exec datahub python manage.py createsuperuser
+    $ docker compose exec datahub python manage.py createsuperuser
 
 
 ### Create new
 
-- Create admin user with `$ docker-compose exec datahub python manage.py createsuperuser`
-- Import [prepared shape file](https://github.com/datasnack/aoi-ghana) with: `$ docker-compose exec datahub python manage.py loadshapes ./data/shapes/ghana.gpkg`
-- Import Data Layer specifications: `$ docker-compose exec datahub python manage.py import ./data/datalayerspec/datalayer.csv`
+- Create admin user with `$ docker compose exec datahub python manage.py createsuperuser`
+- Import [prepared shape file](https://github.com/datasnack/aoi-ghana) with: `$ docker compose exec datahub python manage.py loadshapes ./data/shapes/ghana.gpkg`
+- Import Data Layer specifications: `$ docker compose exec datahub python manage.py import ./data/datalayerspec/datalayer.csv`
 - Import Data Layer data with:
-    - `$ docker-compose exec datahub python manage.py datalayer <layer_key> download`
-    - `$ docker-compose exec datahub python manage.py datalayer <layer_key> process`
+    - `$ docker compose exec datahub python manage.py datalayer <layer_key> download`
+    - `$ docker compose exec datahub python manage.py datalayer <layer_key> process`
 
 
 ### Create dump
 
-In case you need to export the data use: `$ docker-compose exec datahub python manage.py dump`. An export file will be created in the `./data/` directory.
+In case you need to export the data use: `$ docker compose exec datahub python manage.py dump`. An export file will be created in the `./data/` directory.
 
 
 ## Customization
@@ -58,10 +58,10 @@ In case you need to export the data use: `$ docker-compose exec datahub python m
 Create custom app to add new functionality and/or overload templates (i.e., start page).
 
     mkdir ./src/<name>
-    docker-compose exec datahub python manage.py startapp <name> ./src/<name>
+    docker compose exec datahub python manage.py startapp <name> ./src/<name>
 
 Then add it in the `.env` to the key `INSTALLED_USER_APPS` (comma separated list) like `src.<name>`.
 
 Finally, inside the created app in `src/<name>/apps.py` change `name = <name>` to `name = src.<name>`.
 
-After that you need to rebuild/start the container with `docker-compose up -d`.
+After that you need to rebuild/start the container with `docker compose up -d`.
