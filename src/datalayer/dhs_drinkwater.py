@@ -10,5 +10,5 @@ class DhsDrinkwater(DhsLayer):
     def get_indicators(self) -> list[str]:
         return ["WS_SRCE_H_IMP"]
 
-    def get_country(self) -> str:
-        return "GH"
+    def get_countries(self) -> list[str]:
+        return ["GH"]
