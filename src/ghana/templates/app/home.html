@@ -6,14 +6,7 @@
 
 {% block content %}
 
-<!--
-	<img style="max-width: 400px; width: 100%; height: auto; margin: 1rem;" src="{% static 'datenfusionsmotor.png' %}" alt="" class="float-sm-end">
-
-
--->
-
 <img style="max-width: 400px; width: 100%; height: auto; margin: 1rem;" src="{% static 'ghanaflag_pixelart.png' %}" alt="" class="float-sm-end">
-
 
 <h1>Welcome to the Ghana Hub</h1>
 <h3>Give me a spin, I'm your Data Hub prototype in action!</h3>
@@ -32,6 +25,15 @@
 	<li><a href="{{ type.get_absolute_url }}">{{ type.name }}</a> ({{ type.shapes.all.count }})</li>
 {% endfor %}
 </ul>
+
+<div class="alert alert-light">
+
+	<b>Ghana Administrative Boundaries</b>
+
+	<p>In 2019, the number of regions increased from 10 to 16. 173 districts existed in 2010 and 216 districts in 2017. Their number has grown to 260 by splits in 2018 and 2019. Guan was inaugurated as 261st district in October 2021.</p>
+
+	<p>The geoshapefile of Ghana presented in this Data Hub is representing the map status prior October 2021. The data is sourced from Ghana Statistical Services (GSS) contributed by OCHA West and Central Africa (ROWCA) via the <a href="https://data.humdata.org/dataset/cod-ab-gha">Humanitarian Data Exchange Platform</a> (HDX).</p>
+</div>
 
 <p>
 	More details and in-depth documentation of each Data Layer can be accessed via its <a href="{% url 'datalayers:datalayer_index' %}">documentation page</a>, including metadata information.
@@ -57,7 +59,10 @@
 </p>
 
 
-<br>
-<br>
+<h4 class="mt-5">Disclaimer</h4>
+
+<p class="small">
+	Basic Usage Metrics Tracking - We use a self-hosted <a href="https://umami.is/">Umami Analytics</a> to monitor and improve our website's performance. Umami is an open-source, privacy-focused tool that tracks basic usage metrics anonymously, without collecting any personally identifiable information (PII) or using cookies. All data is aggregated to help us understand site traffic and user interactions while respecting your privacy.
+</p>
 
 {% endblock %}
