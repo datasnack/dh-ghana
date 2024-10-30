@@ -6,19 +6,17 @@
 
 {% block content %}
 
-<img style="max-width: 400px; width: 100%; height: auto; margin: 1rem;" src="{% static 'ghanaflag_pixelart.png' %}" alt="" class="float-sm-end">
+<img style="max-width: 250px; min-width: 50px; width: 30%; height: auto; margin: 1rem;" src="{% static 'ghanaflag_pixelart.svg' %}" width="250" height="355" alt="" class="float-end">
 
 <h1>Welcome to the Ghana Hub</h1>
 <h3>Give me a spin, I'm your Data Hub prototype in action!</h3>
 
 <p>
-	The <b>Data Hub</b> serves as a dynamic spatio-temporal information platform, tailored to the data practices of researchers in infectious diseases and public stakeholders engaged in epidemic preparedness and response.
-	It offers an integrated view of various Data Layers relevant to <b>Ghana</b>, spanning multiple categories such as socio-demographic, environmental, weather, health, and infrastructure.
-	These layers are compiled from user-based and open data sources (with some layers originating from the same source) to support data analysis and decision-making.
+	The <b>Data Hub</b> is a self-hostable, open-source engine for reproducible data harmonization, dataset building &amp; exploration, which serves as a dynamic spatio-temporal information platform tailored to the data practices of stakeholders in Global Health research, education and action. This <b>Demo Hub</b> offers a comprehensive view of various Data Layers relevant to <b>Ghana</b>, covering categories like demographics, socioeconomic factors, environmental conditions, weather patterns, health, and infrastructure. These layers are built from both user-contributed and open data sources (with some layers derived from shared sources), creating a robust data foundation for data analysis and informed decision-making in Global Health.
 </p>
 
 <p>
-	The hub currently holds {{ shapes_count }} shapes, from the following types:
+	The <b>{{ datahub_name }}</b> currently integrates {{ datalayers_count }} Data Layers from different sources for a total of {{ shapes_count }} different geographical units in <b>Ghana</b> of the following types:
 </p>
 <ul>
 {% for type in shape_types %}
@@ -36,14 +34,14 @@
 </div>
 
 <p>
-	More details and in-depth documentation of each Data Layer can be accessed via its <a href="{% url 'datalayers:datalayer_index' %}">documentation page</a>, including metadata information.
+	More details and in-depth documentation of each Data Layer can be accessed via its <a href="{% url 'datalayers:datalayer_index' %}">documentation page</a>, including metadata information, in line with FAIR data sharing principles.
 </p>
 <br>
 
 <h3>Snack your Data</h3>
 <p>
-	To access the gathered open data sources you can browse them via the <a href="{% url 'shapes:shape_index' 'country' %}">Country</a>, <a href="{% url 'shapes:shape_index' 'region' %}">Region</a> and <a href="{% url 'shapes:shape_index' 'district' %}">District</a> listings or the <a href="{% url "app:tools_picker" %}">location picker</a>.
-	Upon choosing your area of interest, you can tailor your data selection through our download configurator, which also offers a basic preview (spatial and temporal description) of the data for your convenience.
+
+	To explore the Data Hub's Data Layers, you can navigate through the <a href="{% url 'shapes:shape_index' 'country' %}">Country</a>, <a href="{% url 'shapes:shape_index' 'region' %}">Region</a>, and <a href="{% url 'shapes:shape_index' 'district' %}">District</a> listings or use the <a href="{% url "app:tools_picker" %}">location picker</a>. You can also look for specific Data Layers in the Data Layer overview, within their categories, or by using the general search function. Once you've selected your Data Layer of interest, you can customize your selection using our data exploration configurator, which provides a basic preview (including spatial and temporal details) of the data for your convenience. The harmonized data is available for download in CSV or Excel format or can be accessed via an API.
 </p>
 <br>
 
@@ -58,11 +56,5 @@
 	Ströbele, J., &amp; Boenecke, J. (2024). Data Hub (Version {{ DATAHUB_VERSION }}) [Computer software]. <a href="https://github.com/datasnack/datahub">https://github.com/datasnack/datahub</a>
 </p>
 
-
-<h4 class="mt-5">Disclaimer</h4>
-
-<p class="small">
-	Basic Usage Metrics Tracking - We use a self-hosted <a href="https://umami.is/">Umami Analytics</a> to monitor and improve our website's performance. Umami is an open-source, privacy-focused tool that tracks basic usage metrics anonymously, without collecting any personally identifiable information (PII) or using cookies. All data is aggregated to help us understand site traffic and user interactions while respecting your privacy.
-</p>
 
 {% endblock %}
