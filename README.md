@@ -7,14 +7,6 @@ The Data Hub is a geographic information system (GIS) featuring a data fusion en
 
 ## Installation
 
-We do not yet provide a ready to use Docker image of the Data Hub, so for now you need to first build the base image yourself. For this first step follow these instructions:
-
-- Clone the [Data Hub repository](https://github.com/datasnack/datahub) to your computer: `$ git clone git@github.com:datasnack/datahub.git`
-- Inside this folder build the Docker container with `$ docker build -t datahub:latest .`
-
-
-No we can clone the Ghana Hub instance (this repository) into a new folder:
-
 - Clone the repository `$ git clone git@github.com:datasnack/dh-ghana.git`
 - Copy the `.env.example` to `.env`: `$ cp .env.example .env`
 - Open the `.env` file and make sure the following variables are set `SECRET_KEY`, `DATAHUB_NAME` (instructions are inside the `.env` file)
@@ -31,6 +23,8 @@ If you change the `.env` file run the following command to apply the changes:
     $ docker compose up -d
 
 Now either import an existing data dump, or create a new instance.
+
+For a setup with more focus to development and working with the source code of the datahub framework directly (instead of it beeing bundled in the Docker image), see the [development information](https://datasnack.org/guide/docs/development.html) in the documention.
 
 ### Import
 

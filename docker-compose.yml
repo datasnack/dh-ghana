@@ -1,6 +1,6 @@
 services:
   datahub:
-    image: datahub
+    image: ghcr.io/datasnack/datahub:latest
     env_file:
       - .env
     ports:
