@@ -9,6 +9,20 @@ from datalayers.utils import get_engine
 from shapes.models import Shape
 
 
+def make_unique(columns):
+    seen = {}
+    unique_cols = []
+    for col in columns:
+        if col not in seen:
+            unique_cols.append(col)
+            seen[col] = 1
+        else:
+            new_col = f"{col}_{seen[col]}"
+            unique_cols.append(new_col)
+            seen[col] += 1
+    return unique_cols
+
+
 class HealthsitesioFacilities(BaseLayer):
     def __init__(self) -> None:
         super().__init__()
@@ -41,6 +55,8 @@ class HealthsitesioFacilities(BaseLayer):
                 self.layer.warning("Could not unzip files: %s", error.stderr)
 
         gdf = geopandas.read_file(self.get_data_path() / "Ghana-node.shp")
+        gdf.columns = make_unique(gdf.columns)
+
         gdf.to_postgis(
             self.raw_vector_data_table,
             con=get_engine(),
