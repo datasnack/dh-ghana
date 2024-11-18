@@ -27,19 +27,18 @@ class HealthsitesioFacilities(BaseLayer):
                 url, folder=self.get_data_path(), file_name=file_name
             )
 
-        if os.path.isfile(self.get_data_path() / "LICENSE.txt"):
-            return
-        try:
-            in_file = self.get_data_path() / file_name
-            out_dir = self.get_data_path().as_posix()
-            subprocess.run(
-                f"unzip {in_file} -d {out_dir}",
-                shell=True,
-                capture_output=True,
-                check=True,
-            )
-        except subprocess.CalledProcessError as error:
-            self.layer.warning("Could not unzip files: %s", error.stderr)
+        if not os.path.isfile(self.get_data_path() / "LICENSE.txt"):
+            try:
+                in_file = self.get_data_path() / file_name
+                out_dir = self.get_data_path().as_posix()
+                subprocess.run(
+                    f"unzip {in_file} -d {out_dir}",
+                    shell=True,
+                    capture_output=True,
+                    check=True,
+                )
+            except subprocess.CalledProcessError as error:
+                self.layer.warning("Could not unzip files: %s", error.stderr)
 
         gdf = geopandas.read_file(self.get_data_path() / "Ghana-node.shp")
         gdf.to_postgis(
@@ -53,18 +52,21 @@ class HealthsitesioFacilities(BaseLayer):
         if shapes is None:
             shapes = Shape.objects.all()
 
-        gdf = geopandas.read_postgis(
-            f"SELECT * FROM {self.raw_vector_data_table}",
-            geom_col="geometry",
-            con=get_engine(),
-        )
+        gdf = geopandas.read_file(self.get_data_path() / "Ghana-node.shp")
 
         for shape in shapes:
-            mask = [wkt.loads(shape.geometry.wkt)]
+            # get geometry of AoI
+            mask = wkt.loads(shape.geometry.wkt)
 
-            # clip to only facilities within area of interest
-            gdfx = gdf[gdf["geometry"].within(mask[0])]
+            # clip to only facilities within AoI
+            gdfx = gdf[gdf["geometry"].within(mask)]
 
-            self.rows.append({"year": 2024, "shape_id": shape.id, "value": len(gdfx)})
+            self.rows.append(
+                {
+                    "year": 2024,
+                    "shape_id": shape.id,
+                    "value": len(gdfx),  # <- count of facilities in AoI == len() of DF
+                }
+            )
 
         self.save()
