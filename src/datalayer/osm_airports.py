@@ -11,7 +11,7 @@ class OsmAirports(BaseLayer):
     def __init__(self) -> None:
         super().__init__()
 
-        self.value_type = LayerValueType.BINARY
+        self.value_type = LayerValueType.VALUE
 
         # table name for the cleaned records
         # can not be osm_airports. this name is used for the parameter!
@@ -74,12 +74,11 @@ class OsmAirports(BaseLayer):
             # clip to only POIs within area of interest
             dfx = df[df["geometry"].within(shape.shapely_geometry())]
 
-            has_feature = bool(len(dfx) > 0)
             self.rows.append(
                 {
                     "shape_id": shape.id,
                     "year": dt.datetime.now().year,
-                    "value": has_feature,
+                    "value": len(dfx),
                 }
             )
 
