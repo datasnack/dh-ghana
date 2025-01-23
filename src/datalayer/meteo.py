@@ -16,3 +16,6 @@ class Meteo(MeteostatLayer):
 
     def end(self) -> dt.datetime:
         return dt.datetime.now()
+
+    def get_vector_data_table(self):
+        return "meteostat_stations"
