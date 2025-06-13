@@ -8,7 +8,7 @@ from datalayers.datasources.base_layer import (
 from datalayers.datasources.tiff_layer import TiffLayer
 
 
-class LitmodDengueLim2025(TiffLayer):
+class LitmodDenvLim2025(TiffLayer):
     def __init__(self) -> None:
         super().__init__()
 
