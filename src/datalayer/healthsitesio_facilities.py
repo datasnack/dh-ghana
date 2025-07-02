@@ -2,11 +2,12 @@ import os
 import subprocess
 
 import geopandas
-from shapely import wkt
 
-from datalayers.datasources.base_layer import BaseLayer
-from datalayers.utils import get_engine
-from shapes.models import Shape
+from datalayers.datasources.base_layer import (
+    BaseLayer,
+    LayerTimeResolution,
+    LayerValueType,
+)
 
 
 def make_unique(columns):
@@ -26,11 +27,9 @@ def make_unique(columns):
 class HealthsitesioFacilities(BaseLayer):
     def __init__(self) -> None:
         super().__init__()
-
-        # table name for the cleaned records
-        # can not be osm_airports. this name is used for the parameter!
-        # but we want to store queried POIs as well
-        self.raw_vector_data_table = "data_healthsitesio_facilities"
+        self.value_type = LayerValueType.INTEGER
+        self.time_col = LayerTimeResolution.YEAR
+        self.raw_vector_data_table = True
 
     def download(self):
         url = "https://healthsites.io/api/public/facilities/shapefile/Ghana/download"
@@ -57,32 +56,13 @@ class HealthsitesioFacilities(BaseLayer):
         gdf = geopandas.read_file(self.get_data_path() / "Ghana-node.shp")
         gdf.columns = make_unique(gdf.columns)
 
-        gdf.to_postgis(
-            self.raw_vector_data_table,
-            con=get_engine(),
-            index=False,
-            if_exists="replace",
-        )
+        self.write_vector_data_to_db(gdf)
 
-    def process(self, shapes=None, save_output=False, param_dir=None):
-        if shapes is None:
-            shapes = Shape.objects.all()
-
-        gdf = geopandas.read_file(self.get_data_path() / "Ghana-node.shp")
+    def process(self, shapes):
+        gdf = self.get_vector_data_df()
 
         for shape in shapes:
-            # get geometry of AoI
-            mask = wkt.loads(shape.geometry.wkt)
-
             # clip to only facilities within AoI
-            gdfx = gdf[gdf["geometry"].within(mask)]
+            gdfx = gdf[gdf["geometry"].within(shape.shapely_geometry())]
 
-            self.rows.append(
-                {
-                    "year": 2024,
-                    "shape_id": shape.id,
-                    "value": len(gdfx),  # <- count of facilities in AoI == len() of DF
-                }
-            )
-
-        self.save()
+            self.add_value(shape, 2024, len(gdfx))

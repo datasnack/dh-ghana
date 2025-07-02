@@ -21,9 +21,5 @@ class WhoPhysdens(BaseLayer):
             pcode = shape.get_property("pcode")
             dfx = df[df["ADMIN0"] == pcode]
 
-            for i, row in dfx.iterrows():
-                self.rows.append(
-                    {"year": row["year"], "shape_id": shape.id, "value": row[self.key]}
-                )
-
-        self.save()
+            for _, row in dfx.iterrows():
+                self.add_value(shape, row["year"], row[self.key])

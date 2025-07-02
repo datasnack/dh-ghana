@@ -3,20 +3,13 @@ import datetime as dt
 import osmnx as ox
 
 from datalayers.datasources.base_layer import BaseLayer, LayerValueType
-from datalayers.utils import get_engine
-from shapes.models import Shape
 
 
 class OsmAirports(BaseLayer):
     def __init__(self) -> None:
         super().__init__()
-
-        self.value_type = LayerValueType.VALUE
-
-        # table name for the cleaned records
-        # can not be osm_airports. this name is used for the parameter!
-        # but we want to store queried POIs as well
-        self.raw_vector_data_table = "data_osm_airports"
+        self.value_type = LayerValueType.INTEGER
+        self.raw_vector_data_table = True
 
     def download(self):
         ox.settings.log_console = True
@@ -59,27 +52,11 @@ class OsmAirports(BaseLayer):
         # drop all columns where each row is NULL
         gdf = gdf.dropna(axis=1, how="all")
 
-        gdf.to_postgis(
-            self.raw_vector_data_table, con=get_engine(), if_exists="replace"
-        )
+        self.write_vector_data_to_db(gdf)
 
-    def process(self, shapes=None):
-        if shapes is None:
-            shapes = Shape.objects.all()
-
-        # load imported data
+    def process(self, shapes):
         df = self.get_vector_data_df()
 
         for shape in shapes:
-            # clip to only POIs within area of interest
             dfx = df[df["geometry"].within(shape.shapely_geometry())]
-
-            self.rows.append(
-                {
-                    "shape_id": shape.id,
-                    "year": dt.datetime.now().year,
-                    "value": len(dfx),
-                }
-            )
-
-        self.save()
+            self.add_value(shape, dt.datetime.now().year, len(dfx))

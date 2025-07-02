@@ -3,8 +3,6 @@ import datetime as dt
 import osmnx as ox
 
 from datalayers.datasources.base_layer import BaseLayer, LayerValueType
-from datalayers.utils import get_engine
-from shapes.models import Shape
 
 
 class OsmRail(BaseLayer):
@@ -41,25 +39,12 @@ class OsmRail(BaseLayer):
         # drop all columns where each row is NULL
         gdf = gdf.dropna(axis=1, how="all")
 
-        gdf.to_postgis(
-            self.raw_vector_data_table, con=get_engine(), if_exists="replace"
-        )
+        self.write_vector_data_to_db(gdf)
 
-    def process(self, shapes=None):
-        if shapes is None:
-            shapes = Shape.objects.all()
-
+    def process(self, shapes):
         df = self.get_vector_data_df()
 
         for shape in shapes:
             dfx = df[df["geometry"].intersects(shape.shapely_geometry())]
 
-            self.rows.append(
-                {
-                    "shape_id": shape.id,
-                    "year": dt.datetime.now().year,
-                    "value": len(dfx) > 0,
-                }
-            )
-
-        self.save()
+            self.add_value(shape, dt.datetime.now().year, len(dfx) > 0)

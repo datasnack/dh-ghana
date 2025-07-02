@@ -16,6 +16,7 @@ BASE_URL = "https://data.chc.ucsb.edu/products/CHIRPS-2.0/africa_daily/tifs/{res
 class ChirpsPrcp(TiffLayer):
     def __init__(self) -> None:
         super().__init__()
+        self.value_type = LayerValueType.FLOAT
         self.time_col = LayerTimeResolution.DAY
         self.manual_nodata = -9999
 
@@ -73,13 +74,4 @@ class ChirpsPrcp(TiffLayer):
         )
         date = dt.date(int(x[1]), int(x[2]), int(x[3]))
 
-        self.rows.append(
-            {
-                "date": date,
-                "shape_id": shape.id,
-                "value": np.nanmean(band),
-                "value_min": np.nanmin(band),
-                "value_max": np.nanmax(band),
-                "value_std_dev": np.nanstd(band),
-            }
-        )
+        self.add_value(shape, date, np.nanmean(band))
