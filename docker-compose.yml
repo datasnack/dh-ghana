@@ -9,6 +9,7 @@ services:
     volumes:
       - ./data:/app/data/
       - ./src:/app/src/
+      - ./docs:/app/docs/
 
   postgis:
     image: postgis/postgis:16-3.4
@@ -19,4 +20,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       PGDATA: /var/lib/postgresql/data/pgdat
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - postgis:/var/lib/postgresql/data
+
+volumes:
+  postgis:
