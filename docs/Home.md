@@ -1,16 +1,26 @@
-# Welcome to the Demo Hub
+# DEMO Data Hub Ghana
 
+<!-- Integration of Grey Info Box design "alert alert-warning" -->
 <div class="alert alert-warning" role="alert">
-This is a demo version of the Data Hub framework, developed by the Data Snack initiative at the Bernhard Nocht Institute for Tropical Medicine. The framework is under ongoing development, and this demo is not intended to serve as a fully functional data collaboration platform. Features like data downloads and API access are implemented only for demonstration purposes. For more information, visit us at <a href="https://datasnack.org">datasnack.org</a>.
+<b>Disclaimer:</b> This  <b>Demo Data Hub</b>, developed by the <a href="https://datasnack.org">Data Snack initiative</a> at the <b>Bernhard Nocht Institute for Tropical Medicine</b>, offers a glimpse into our data collaboration framework. Features like data downloads and API access are included for demonstration purposes only. The framework itself is under active development. For more details, visit <a href="https://github.com/datasnack/datahub">https://github.com/datasnack/datahub</a>.
 </div>
 
-<img style="max-width: 250px; min-width: 50px; width: 30%; height: auto; margin: 1rem;" src="{% static 'ghanaflag_pixelart.svg' %}" width="250" height="355" alt="" class="float-end">
+<img style="max-width: 230px; min-width: 75px; width: 30%; height: auto; margin: 1rem 0 1rem 3rem;" src="{% static 'ghanaflag_pixelart.svg' %}" width="100" height="184" alt="" class="float-end">
 
-## Give me a spin, I'm your Data Hub prototype in action!
+<br>
 
-The **Data Hub** serves as a dynamic spatio-temporal information platform, tailored to the data practices of researchers. It offers an integrated view of various Data Layers relevant to your study region, spanning multiple categories such as socio-demographic, environmental, weather, health, and infrastructure. These layers are compiled from user-based and open data sources (with some layers originating from the same source) to support data analysis and decision-making.
+## Give me a spin, I'm your Data Hub in action!
 
-The hub currently holds {{ shapes_count }} shapes, from the following types:
+Designed as a dynamic spatiotemporal information system, the **Data Hub** framework supports data curation, harmonization, and collaboration across domains and data-driven use cases — modular in design, open source, and locally deployable. Tailored to the needs of Global Health teams, the platform integrates diverse data layers from the demo region of **Ghana** from 1901 up to 2025, including demographic, socioeconomic, environmental, meteorological, health, and infrastructure data. Availability, resolution, and timeliness of data vary according to the original data sources. **Ghana** was chosen as a demo region due to its long-standing partnership with the *Bernhard Nocht Institute for Tropical Medicine*, which maintains the *Kumasi Centre for Collaborative Research in Tropical Medicine (KCCR)* in Kumasi.
+
+<br>
+
+<!-- Integration of Shapes Logo derived from external source -->
+### {% icon "location" size=24 %} Shapes
+
+[Ghana](https://en.wikipedia.org/wiki/Ghana) is a West African country bordered by Burkina Faso to the north, Togo to the east, and Côte d'Ivoire to the west, with a southern coastline along the Gulf of Guinea. The landscape transitions from coastal plains in the south through forested highlands in the center to northern savanna regions. Most of the population is concentrated in the southern half, particularly around the capital Accra on the coast and the inland commercial center of Kumasi.
+
+The country is organized into administrative units, ranging from terrestrial plains to regions, districts and councils. The **Data Hub** currently holds {{ shapes_count }} shapes from the following types:
 
 <ul>
 {% for type in nav_shape_types %}
@@ -18,31 +28,43 @@ The hub currently holds {{ shapes_count }} shapes, from the following types:
 {% endfor %}
 </ul>
 
+You can find an overview of all shapes in the [Shapes]({% url "shapes:shape_detail_all" %}) section. From there, you can explore individual spatial units and access them either via API or as downloadable files for further analysis. The data originates from *Ghana Statistical Services* and was contributed by *OCHA West and Central Africa* via [*Humanitarian Data Exchange Platform (HDX)*](https://data.humdata.org/dataset/cod-ab-gha), current as of before October 2021.
 
-<div class="alert alert-light" style="clear: right">
-<b>Ghana Administrative Boundaries</b>
-<p>In 2019, the number of regions increased from 10 to 16. 173 districts existed in 2010 and 216 districts in 2017. Their number has grown to 260 by splits in 2018 and 2019. Guan was inaugurated as 261st district in October 2021.</p>
-<p>The geoshapefile of Ghana presented in this Data Hub is representing the map status prior October 2021. The data is sourced from Ghana Statistical Services (GSS) contributed by OCHA West and Central Africa (ROWCA) via the <a href="https://data.humdata.org/dataset/cod-ab-gha">Humanitarian Data Exchange Platform</a> (HDX).</p>
-</div>
+<br>
 
+<!-- Integration of Data Layer Logo derived from external source -->
+### {% icon "stack" size=24 %} Data Layers
 
-More details and in-depth documentation of each Data Layer can be accessed via its [documentation page]({% url 'datalayers:datalayer_index' %}), including metadata information.
+Data Layers are compiled from both user-contributed and open data sources, with some layers derived from the same source. To access Data Layers, you can browse the full catalog via the [Data Layers]({% url "datalayers:datalayer_index" %}) overview, or use the [Shapes]({% url "shapes:shape_detail_all" %}) or [Location Picker]({% url "app:tools_picker" %}) to discover all available Data Layers for a specific spatial unit of interest.
 
-To access the gathered open data sources you can browse them via the above-mentioned shape types or the [location picker]({% url "app:tools_picker" %}). Upon choosing your area of interest, you can tailor your data selection through our download configurator, which also offers a basic preview (spatial and temporal description) of the data for your convenience.
+Each Data Layer can be explored in-depth through a summary panel, see example [Forest land cover]({% url "datalayers:datalayer_detail" "copernicus_forest" %}). The panel features interactive map previews and temporal visualization that reveal spatial distributions and trends over time. It further includes detailed metadata, allowing you to examine data coverage, quality indicators, and key statistical attributes before proceeding with analysis. Data can be accessed either via API or as downloadable files.
 
-### Terms of Use
+<br>
 
-The {{ datahub_name }} hosts datasets under a wide range of licenses, ensuring compliance with the intellectual property rights of the various data sources utilized. Some datasets have been processed according to the needs of potential user groups. By accessing datasets through the Data Hub and/or the original source, users implicitly agree to abide by the terms of the applicable license specific to each dataset, as described in the dataset's metadata. This includes that when utilizing any data provided through the Data Hub, the data custodian shall be credited in the manner specified in the respective license and that relevant copyright provisions shall be complied with.
+<!-- Integration of Data Layer Logo derived from external source -->
+### {% icon "tools" size=24 %} Tools
 
-In addition, the Data Hub shall be cited as contributing service as follows:
+In the **Tools** section, you'll find extensions built on the core Data Hub framework — for example, to enhance interaction with data layers or integrate analytical pipelines. It can also host data products such as dashboards or interactive maps. One example is the [Location Picker]({% url "app:tools_picker" %}), which links contextual data from spatial units to specific coordinates, for instance, to support event-based surveillance or early warning systems. We continuously develop new tools and share them here as open source extensions, where relevant to the community.
 
+<br>
+
+<!-- Integration of Data Layer Logo derived from external source -->
+### {% icon "book" size=24 %} Docs
+
+The **Data Hub**'s **Documentation** section collects project-relevant overviews, including a [Data Snack summary]({% url "app:docs_page" "data-snack" %}) with key project details and important documentation on topics such as the [Data Hub ecosystem]({% url "app:docs_page" "shapefile-history" %}), [Shapefile history]({% url "app:docs_page" "shapefile-history" %}), [Terms of use]({% url "app:docs_page" "terms-of-use" %}) or the [Data Hub Changelog]({% url "app:changelog" %}). Project teams can maintain all sections as Markdown files in the connected project workspace, like GitHub.
+
+<br>
+
+<!-- Integration of Data Layer Logo derived from external source -->
+### {% icon "rocket" size=24 %} Found our work useful?
+
+If you used the **Data Hub** for data processing, metadata integration, or visualization in your work, please cite it as a contributing service using the following format:
 {% include "app/citation.html" %}
 
+<br>
+<br>
 
-#### Disclaimer
-
-<div class="small">
-
-Basic Usage Metrics Tracking - We use a self-hosted [Umami Analytics](https://umami.is/) to monitor and improve our website's performance. Umami is an open-source, privacy-focused tool that tracks basic usage metrics anonymously, without collecting any personally identifiable information (PII) or using cookies. All data is aggregated to help us understand site traffic and user interactions while respecting your privacy.
-
+<!-- Integration of Grey Info Box design "alert-secondary" -->
+<div class="alert alert-secondary">
+<b>Usage Metrics Tracking: </b> We use a self-hosted <a href="https://umami.is/">Umami Analytics</a> to monitor and improve our website's performance. Umami is an open-source, privacy-focused tool that tracks basic usage metrics anonymously, without collecting any personally identifiable information (PII) or using cookies. All data is aggregated to help us understand site traffic and user interactions while respecting your privacy.
 </div>
