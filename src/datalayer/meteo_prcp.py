@@ -7,3 +7,5 @@ class MeteoPrcp(Meteo):
         self.col_of_interest = "prcp"
 
         self.format_suffix = "mm"
+
+        self.chart_type = "bar"
