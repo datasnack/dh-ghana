@@ -2,7 +2,7 @@
 
 <!-- Integration of Grey Info Box design "alert-primary" -->
 <div class="alert alert-primary" role="alert">
-<b>DISCLAIMER:</b> This  <b>Demo Data Hub</b>, developed by the <a href="https://datasnack.org">Data Snack initiative</a> at the <b>Bernhard Nocht Institute for Tropical Medicine</b>, offers a glimpse into our open-osurce data collaboration framework. Features like data downloads and API access are included for demonstration purposes only. The software framework is under active development. For more details, visit <a href="https://github.com/datasnack/datahub">https://github.com/datasnack/datahub</a>.
+<b>DISCLAIMER:</b> This  <b>Demo Data Hub</b>, developed by the <a href="https://datasnack.org">Data Snack initiative</a> at the <b>Bernhard Nocht Institute for Tropical Medicine</b>, offers a glimpse into our open-source data collaboration framework. Features like data downloads and API access are included for demonstration purposes only. The software framework is under active development. For more details, visit <a href="https://github.com/datasnack/datahub">https://github.com/datasnack/datahub</a>.
 </div>
 
 <img style="max-width: 230px; min-width: 75px; width: 30%; height: auto; margin: 1rem 0 1rem 3rem;" src="{% file 'images/ghanaflag_pixelart.svg' %}" width="100" height="184" alt="" class="float-end">
