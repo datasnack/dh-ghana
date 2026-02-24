@@ -1,8 +1,8 @@
 ---
-title: Shapefile history
+title: Shapefile History
 ---
 
-# Shapefile history
+# Shapefile History
 
 [Ghana](https://en.wikipedia.org/wiki/Ghana) is a West African country bordered by Burkina Faso to the north, Togo to the east, and Côte d'Ivoire to the west, with a southern coastline along the Gulf of Guinea. The landscape transitions from coastal plains in the south through forested highlands in the center to northern savanna regions. Most of the population is concentrated in the southern half, particularly around the capital Accra on the coast and the inland commercial center of Kumasi.
 

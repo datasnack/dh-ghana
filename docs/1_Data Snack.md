@@ -1,5 +1,5 @@
 ---
-title: Data Snack summary
+title: Data Snack Summary
 ---
 
 # Data Snack
