@@ -18,7 +18,8 @@ class Era5Tmin(BaseLayer):
         super().__init__()
 
         self.time_col = LayerTimeResolution.DAY
-        self.value_type = LayerValueType.VALUE
+        self.value_type = LayerValueType.FLOAT
+        self.format_suffix = "°C"
 
     def download(self):
         self._create_data_dir_if_not_exists()
