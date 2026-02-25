@@ -8,7 +8,7 @@ title: Use Case Overview
 
 <!-- Integration of Grey Info Box design "alert-primary" -->
 <div class="alert alert-primary" role="alert">
-<b>NOTE:</b> This <b>Use Case Summary</b> serves as a template for documenting research workflows. As an example - dengue outbreak risk assessment in Ghana - this <i>Markdown</i>-based approach enables teams to collaboratively define data requirements, harmonization strategies, and analysis plans. This example is illustrative and not validated. Looking ahead, we aims to integrate automated documentation tools that generate summaries directly from curated metadata, reducing manual effort and ensuring consistency across use cases. </div>
+<b>NOTE:</b> This <b>Use Case Summary</b> serves as a template for documenting research workflows. As an example - dengue outbreak risk assessment in Ghana - this <i>Markdown</i>-based approach enables teams to collaboratively define data requirements, harmonization strategies, and analysis plans. This example is illustrative and not validated. Looking ahead, we aim to integrate automated documentation tools that generate summaries directly from curated metadata, reducing manual effort and ensuring consistency across use cases. </div>
 
 <br>
 
@@ -20,11 +20,11 @@ title: Use Case Overview
 |**Spatial coverage**|Ghana (GHA)|
 |Highest-level shape|Country (admin0)|
 |Lowest-level|District (admin2)|
-|Resolution appicable to use case|Region (admin1)|
+|Resolution applicable to use case|Region (admin1)|
 |**Temporal coverage**|2020-01-01 - 2025-12-31|
 |Highest-level|Year|
 |Lowest-level|Day|
-|Resolution appicable to use case|Month|
+|Resolution applicable to use case|Month|
 |**Maintenance & Updates**|  |
 |Update frequency| [e.g., ad-hoc / weekly / monthly / annually]|
 |Responsible|[Team member(s)]|
@@ -42,8 +42,8 @@ Link: [URL]
 - Do not clean your datasets for spatial boundary changes; document any changes you encounter instead (to be added in the Data Layer metadata). The Data Hub is developing centralized handling for spatial mismatches across all layers, so these issues can be addressed consistently platform-wide
 </div>
 
-| Data Requirements | Spatial smallest | Temporal smalltest | Study Data | Open Data |
-|-------------------|------------------|--------------------|------------| ----------|
+| Data Requirements | Spatial smallest | Temporal smallest | Study Data | Open Data |
+|-------------------|------------------|-------------------|------------| ----------|
 ||||||
 | ***EPIDEMIOLOGICAL DATA*** | *NO identifiable/sensitive data!* | | | |
 | Dengue cases | {% dl_spatial "litdata_denv_lim2025" "last" %} | {% dl_temporal "litdata_denv_lim2025" "text" %} | collection ongoing | {% dl_link "litdata_denv_lim2025" %} |
