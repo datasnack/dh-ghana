@@ -23,9 +23,6 @@ Please note that metadata provided in this demo environment is illustrative and 
 
 If you used the **Data Hub** for data processing, metadata integration, or visualization in your work, please cite it as a contributing service:
 
-<!-- Integration of Grey Info Box design "alert-secondary" -->
-<div class="alert alert-secondary">
-<i>Ströbele, J., & Boenecke, J. (2024). Data Hub (Version 0.9.4) [Computer software]. https://github.com/datasnack/datahub</i>
-</div>
+{% include "app/citation.html" %}
 
 <br><br>
